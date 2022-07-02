@@ -1,6 +1,6 @@
 # Custum-metadata-driven-trigger-framework-task
 ## The metadata trigger is expending Kevin O'hara trigger framework -->  https://github.com/kevinohara80/sfdc-trigger-framework.There are some changes in the TriggerHandler --> https://www.diffchecker.com/h89HDA4o
-## There is only one implemented trigger related to the task
+## There is only one implemented trigger related to the task :
 
 As a Sales User I want to have task automatically created to prepare contract when opportunity is closed won.
 Acceptance Criteria:
