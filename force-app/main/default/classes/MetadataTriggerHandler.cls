@@ -8,6 +8,7 @@ public with sharing class MetadataTriggerHandler extends TriggerHandler {
           addToLoopCount();
           
            String objType = getSObjectType();
+
            List<Meta__mdt> metaTriggers=[
                 SELECT 
                     Class__c 
@@ -19,11 +20,11 @@ public with sharing class MetadataTriggerHandler extends TriggerHandler {
                     isActive__c = TRUE
                 ORDER BY 
                     Executing_Order__c
-
             ];
 
             for(Meta__mdt mdt :metaTriggers){
                 TriggerHandler handler;
+
                 try {
                     handler=(TriggerHandler) Type.forName(mdt.Class__c).newInstance();
                 } catch (Exception ex) {
@@ -51,9 +52,8 @@ public with sharing class MetadataTriggerHandler extends TriggerHandler {
                     when AFTER_UNDELETE {
                         handler.afterUndelete();
                     }
-                 }
-                
-            }
+             }
+        }
         
     }
 
