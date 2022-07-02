@@ -1,4 +1,4 @@
-# Custum-metadata-driven-trigger-framework-task
+# Custom-metadata-driven-trigger-framework-task
 ## The metadata trigger is expending Kevin O'hara trigger framework -->  https://github.com/kevinohara80/sfdc-trigger-framework.There are some changes in the TriggerHandler --> https://www.diffchecker.com/h89HDA4o
 ## There is only one implemented trigger related to the task :
 
