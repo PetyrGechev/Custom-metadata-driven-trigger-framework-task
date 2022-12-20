@@ -1,4 +1,4 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import getAllUsers from '@salesforce/apex/UserController.getAllUsers';
 import getAllPermissionSets from '@salesforce/apex/PermissionSetsController.getAllPermissionSets';
 import isAlreadyAssigned from '@salesforce/apex/PermissionSetsController.isAlreadyAssigned';
@@ -9,8 +9,8 @@ import { dispatchToastMessage } from "c/utils"
 
 export default class RoleSelection extends LightningElement {
 
-    usersOptions = [];
-    rolesOptions = [];
+    @track usersOptions = [];
+    @track rolesOptions = [];
     selectedUserId;
     selectedPermissionSetId;
     selectedUser;
