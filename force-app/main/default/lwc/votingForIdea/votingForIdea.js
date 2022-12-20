@@ -17,7 +17,7 @@ export default class VotingForIdea extends LightningElement {
     idea;
     isAlreadyVoted;
     radioButtonValue = '';
-    dispatchToastMessage = dispatchToastMessage.bind(this);
+
     showLwcElement;
 
     get options() {
@@ -41,7 +41,7 @@ export default class VotingForIdea extends LightningElement {
         getVotingForIdeaById({ campId: this.recordId }).then(result => {
             this.idea = result;
         }).catch(error => {
-            this.dispatchToastMessage(error, 'Error');
+            dispatchToastMessage(error, 'Error');
         });
 
     }
@@ -53,13 +53,13 @@ export default class VotingForIdea extends LightningElement {
             this.showLwcElement = true;
             this.isAlreadyVoted = data;
         } else if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
         }
     }
 
     handleClick() {
         if (!this.radioButtonValue) {
-            this.dispatchToastMessage('You can vote without selection an option', 'Warning');
+            dispatchToastMessage('You can vote without selection an option', 'Warning');
             return;
         }
         this.configVoteRecord();
@@ -78,10 +78,10 @@ export default class VotingForIdea extends LightningElement {
 
     createNewVoteRecord() {
         createNewVote({ voteObj: this.voteRecord }).then(() => {
-            this.dispatchToastMessage('Successfully voted for this idea', 'Success');
+            dispatchToastMessage('Successfully voted for this idea', 'Success');
             refreshApex(this.wiredAlreadyVoted);
         }).catch(error => {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
         });
 
     }

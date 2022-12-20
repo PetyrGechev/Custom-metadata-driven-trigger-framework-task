@@ -27,8 +27,6 @@ export default class VotingForEmployee extends LightningElement {
         User__c: USER_ID
     };
 
-    dispatchToastMessage = dispatchToastMessage.bind(this);
-
     get userCanVote() {
         return userHasPermissionToVote;
     }
@@ -40,7 +38,7 @@ export default class VotingForEmployee extends LightningElement {
             this.showLwcElement = true;
             this.isAlreadyVoted = data;
         } else if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
         }
     }
 
@@ -50,7 +48,7 @@ export default class VotingForEmployee extends LightningElement {
         if (data) {
             this.employeeOptionsArr = this.setOptionValues(data);
         } else if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
             this.employeeOptionsArr = undefined;
         }
     }
@@ -61,7 +59,7 @@ export default class VotingForEmployee extends LightningElement {
 
     handleSubmitClick() {
         if (!this.selectedEmployeeName) {
-            this.dispatchToastMessage('You can vote without selection an option', 'Warning');
+            dispatchToastMessage('You can vote without selection an option', 'Warning');
             return;
         }
 
@@ -90,9 +88,9 @@ export default class VotingForEmployee extends LightningElement {
     createNomineeRecord() {
         createNewNominee({ nomineeObj: this.nomineeRecord }).then(() => {
             refreshApex(this.wiredAlreadyVoted);
-            this.dispatchToastMessage('Nomination created successfully', 'Success');
+            dispatchToastMessage('Nomination created successfully', 'Success');
         }).catch(error => {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
         });
     }
 
