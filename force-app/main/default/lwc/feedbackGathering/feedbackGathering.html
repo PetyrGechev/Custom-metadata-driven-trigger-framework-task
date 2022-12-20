@@ -1,0 +1,32 @@
+<template>
+	<template if:true={showLwcElement}>
+		<template if:true={userCanVote}>
+			<template if:false={isAlreadyVoted}>
+				<lightning-card>
+					<div class="slds-card slds-text-heading_large slds-var-p-around_small">{questionName}</div>
+					<div class="slds-var-p-around_small">
+						<lightning-textarea
+							name="input2"
+							label="Please feel free to leave any comments"
+							value={textAreaValue}
+							placeholder="type here..."
+						></lightning-textarea>
+					</div>
+					<lightning-button
+						label="Submit"
+						variant="brand"
+						title="Primary action"
+						onclick={handleSubmit}
+						class="slds-var-p-around_small slds-var-p-top_small"
+					>
+					</lightning-button>
+				</lightning-card>
+			</template>
+			<template if:true={isAlreadyVoted}>
+				<div class="slds-card">
+					<c-already-voted-notification> </c-already-voted-notification>
+				</div>
+			</template>
+		</template>
+	</template>
+</template>
