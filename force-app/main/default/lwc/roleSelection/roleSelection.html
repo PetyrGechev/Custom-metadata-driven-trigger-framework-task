@@ -1,0 +1,32 @@
+<template>
+  <!-- <div class="slds-size_large"> -->
+    <lightning-card title="Add new participant">
+      <div class="slds-var-p-around_small">
+        <lightning-combobox
+          placeholder="Select campaign role"
+          options={rolesOptions}
+          value={selectedPermissionSetId}
+          onchange={handleRoleSelection}
+        >
+        </lightning-combobox>
+      </div>
+      <div class="slds-var-p-around_small">
+        <lightning-combobox
+          placeholder="Select User"
+          options={usersOptions}
+          value={selectedUser}
+          onchange={handleUserSelection}
+        >
+        </lightning-combobox>
+      </div>
+      <div class="slds-var-p-around_small">
+        <lightning-button
+          label="Add"
+          onclick={handleAddButtonClick}
+          class="submit-btn"
+          variant="brand-outline"
+        ></lightning-button>
+      </div>
+    </lightning-card>
+  <!-- </div> -->
+</template>

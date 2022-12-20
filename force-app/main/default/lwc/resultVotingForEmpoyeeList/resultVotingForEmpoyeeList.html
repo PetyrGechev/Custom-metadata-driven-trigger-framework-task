@@ -1,0 +1,26 @@
+<template >
+    <div style="max-width:450px">
+   <lightning-card style="width:350px">
+    <p class="slds-text-heading_large slds-var-p-around_small">All voting for employees:</p>
+    <template for:each={votingResult} for:item="votingForEmployee">
+        <div class="slds-item" key={votingForEmployee.Id}>
+            <lightning-layout vertical-align="" horizontal-align="spread">
+                <lightning-layout-item padding="around-small">
+                    <p class="slds-text-heading_medium ">{votingForEmployee.votingForEmployeeName}:</p>
+                     <template for:each={votingForEmployee.finalNomineeResultsList} for:item="result">
+                        <div class="slds-item" key={result.Id}>
+                        <lightning-layout vertical-align="" horizontal-align="spread">
+                            <lightning-layout-item >
+                            <p class="slds-text-heading_small ">{result.name}:  {result.votes}</p>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                </template> 
+
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </template>
+   </lightning-card>
+</div>
+</template>

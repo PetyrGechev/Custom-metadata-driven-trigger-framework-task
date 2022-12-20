@@ -1,0 +1,32 @@
+<template>
+	<template if:true={showLwcElement}>
+		<template if:true={userCanVote}>
+			<div class="slds-color__background_gray-1 slds-color__border_gray-12"></div>
+			<lightning-layout class="slds-card" vertical-align="center" horizontal-align="spread" multiple-rows="true">
+				<template if:false={isAlreadyVoted}>
+					<lightning-badge
+						class="badge"
+						label="Please nominate employee"
+						style="margin: 8px"
+					></lightning-badge>
+
+					<lightning-layout-item size="12" padding="around-small">
+						<lightning-combobox
+							placeholder="Select employee nomination"
+							options={employeeOptionsArr}
+							value={selectedEmployee}
+							onchange={handleEmployeePick}
+						>
+						</lightning-combobox>
+					</lightning-layout-item>
+					<lightning-layout-item size="1" padding="around-small">
+						<lightning-button label="Submit" onclick={handleSubmitClick}></lightning-button>
+					</lightning-layout-item>
+				</template>
+				<template if:true={isAlreadyVoted}>
+					<c-already-voted-notification> </c-already-voted-notification>
+				</template>
+			</lightning-layout>
+		</template>
+	</template>
+</template>

@@ -1,0 +1,45 @@
+<template>
+	<template if:true={showLwcElement}>
+		<template if:true={userCanVote}>
+			<lightning-layout class="slds-card" vertical-align="center" horizontal-align="spread" multiple-rows="true">
+				<template if:false={isAlreadyVoted}>
+					<template for:each={idea} for:item="item">
+						<div class="slds-item" key={item.Id}>
+							<lightning-layout vertical-align="" horizontal-align="spread">
+								<lightning-layout-item>
+									<lightning-badge
+										class="badge"
+										label={item.Name}
+										style="margin: 8px"
+									></lightning-badge>
+								</lightning-layout-item>
+							</lightning-layout>
+							<lightning-radio-group
+								name="radioGroup"
+								label="Please vote: "
+								options={options}
+								value={value}
+								type="radio"
+								required
+								onchange={handleRadioBtnChange}
+								class="slds-p-around_small"
+							>
+							</lightning-radio-group>
+							<lightning-button
+								variant="brand"
+								label="Submit"
+								title="Primary action"
+								onclick={handleClick}
+								class="slds-m-left_x-small slds-p-top_small"
+							>
+							</lightning-button>
+						</div>
+					</template>
+				</template>
+				<template if:true={isAlreadyVoted}>
+					<c-already-voted-notification> </c-already-voted-notification>
+				</template>
+			</lightning-layout>
+		</template>
+	</template>
+</template>
