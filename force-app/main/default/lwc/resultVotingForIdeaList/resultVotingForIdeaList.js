@@ -6,14 +6,13 @@ export default class ResultVotingForIdeaList extends LightningElement {
 
     allVotingForIdeasArray
     @api recordId;
-    dispatchToastMessage = dispatchToastMessage.bind(this);
 
     connectedCallback() {
         getAllVotingForIdeasByCampaignId({ cmpId: this.recordId })
             .then(result => {
                 this.allVotingForIdeasArray = result;
             }).catch(error => {
-                this.dispatchToastMessage(error, 'Error');
+                dispatchToastMessage(error, 'Error');
             });
 
     }

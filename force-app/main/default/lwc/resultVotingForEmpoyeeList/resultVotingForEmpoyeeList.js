@@ -1,7 +1,7 @@
 /* eslint-disable no-empty */
 import { LightningElement, api } from 'lwc';
 import getAllVotingForEmployeesByCampaignId from '@salesforce/apex/VotingForEmployeeController.getAllVotingForEmployeesByCampaignId';
-
+import { dispatchToastMessage } from "c/utils"
 
 export default class ResultVotingForEmployList extends LightningElement {
   @api recordId;
@@ -13,7 +13,7 @@ export default class ResultVotingForEmployList extends LightningElement {
       this.votingResult = result;
       console.log(result);
     }).catch(error => {
-      this.dispatchToastMessage(error, 'Error');
+      dispatchToastMessage(error, 'Error');
     });
   }
 

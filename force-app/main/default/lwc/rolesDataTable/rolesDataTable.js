@@ -25,7 +25,6 @@ export default class RolesDataTable extends LightningElement {
     columns = COLUMNS;
     wiredGetAllPermissionSetAssignmentsResponse;
     context = createMessageContext();
-    dispatchToastMessage = dispatchToastMessage.bind(this);
 
     @wire(getAllPermissionSetAssignmentsRelatedToVotingApp) wiredGetAllPermissionSetAssignments(value) {
         this.wiredGetAllPermissionSetAssignmentsResponse = value;
@@ -42,16 +41,16 @@ export default class RolesDataTable extends LightningElement {
             );
         }
         if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
         }
     }
 
     handleDeleteAction(event) {
         deletePermissionSetAssigmentById({ psaId: event.detail.row.Id }).then(() => {
-            this.dispatchToastMessage('Successfully removed', 'Success');
+            dispatchToastMessage('Successfully removed', 'Success');
             refreshApex(this.wiredGetAllPermissionSetAssignmentsResponse);
         }).catch(error => {
-            this.dispatchToastMessage(error, 'Error');
+            dispatchToastMessage(error, 'Error');
         });
     }
 

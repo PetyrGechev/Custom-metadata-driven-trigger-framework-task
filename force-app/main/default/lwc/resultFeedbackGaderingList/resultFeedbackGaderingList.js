@@ -14,7 +14,6 @@ export default class ResultFeedbackGaderingList extends LightningElement {
     data = [];
     columns = COLUMNS;
     @api recordId;
-    dispatchToastMessage = dispatchToastMessage.bind(this);
 
     connectedCallback() {
         getAllResultsFromFeedbackGaderingsByCampaignId({ cmpId: this.recordId }).then(result => {
@@ -29,7 +28,7 @@ export default class ResultFeedbackGaderingList extends LightningElement {
             }
             );
         }).catch(error => {
-            this.dispatchToastMessage(error, 'Error');
+            dispatchToastMessage(error, 'Error');
         });
     }
 

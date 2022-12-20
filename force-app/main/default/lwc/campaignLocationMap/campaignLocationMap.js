@@ -7,7 +7,6 @@ export default class CampaingLocationMap extends LightningElement {
     zoomLevel;
     listView;
     @api recordId;
-    dispatchToastMessage = dispatchToastMessage.bind(this);
 
     @wire(getCampaignLocationById, { cmpId: '$recordId' }) wiredGetCampaignLocationById({ data, error }) {
         if (data) {
@@ -25,7 +24,7 @@ export default class CampaingLocationMap extends LightningElement {
             this.setLocationParameters();
         }
         if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
         }
     }
     setLocationParameters() {

@@ -15,13 +15,12 @@ export default class RoleSelection extends LightningElement {
     selectedPermissionSetId;
     selectedUser;
     context = createMessageContext();
-    dispatchToastMessage = dispatchToastMessage.bind(this);
 
     @wire(getAllUsers) wiredGeAllUsers({ data, error }) {
         if (data) {
             this.usersOptions = this.setOptionValues(data);
         } else if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
             this.usersOptions = undefined;
         }
     }
@@ -30,7 +29,7 @@ export default class RoleSelection extends LightningElement {
         if (data) {
             this.rolesOptions = this.setOptionValues(data);
         } else if (error) {
-            this.dispatchToastMessage(error.body.message, 'Error');
+            dispatchToastMessage(error.body.message, 'Error');
             this.rolesOptions = undefined;
         }
     }
@@ -43,10 +42,10 @@ export default class RoleSelection extends LightningElement {
         isAlreadyAssigned({ psaId: this.selectedPermissionSetId, userId: this.selectedUserId })
             .then((result) => {
                 if (result) {
-                    this.dispatchToastMessage('User is already assigned for this role', 'Warning');
+                    dispatchToastMessage('User is already assigned for this role', 'Warning');
                     return;
                 }
-                this.selectedUser=null;
+                this.selectedUser = null;
                 this.AssigneePermissionSet()
                 this.resetFields();
             })
@@ -80,13 +79,13 @@ export default class RoleSelection extends LightningElement {
     resetFields() {
         this.selectedUser = '';
         this.selectedPermissionSetId = null;
-        this.selectedUserId=null;
+        this.selectedUserId = null;
     }
 
     checkFields() {
         if (this.selectedUserId === undefined || this.selectedPermissionSetId === undefined ||
             this.selectedUserId === null || this.selectedPermissionSetId === null) {
-            this.dispatchToastMessage('Please select role and user!', 'Warning');
+            dispatchToastMessage('Please select role and user!', 'Warning');
             return true;
         }
         return false;
@@ -96,7 +95,7 @@ export default class RoleSelection extends LightningElement {
         createNewPermissionSetAssignment({ psaId: this.selectedPermissionSetId, userId: this.selectedUserId })
             .then(() => {
                 this.fireNewParticipantChangeEvent();
-                this.dispatchToastMessage('One more participant was created', 'Success');
+                dispatchToastMessage('One more participant was created', 'Success');
             })
     }
 }

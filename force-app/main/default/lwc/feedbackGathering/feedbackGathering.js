@@ -25,8 +25,6 @@ export default class FeedbackGathering extends LightningElement {
         User__c: USER_Id
     };
 
-    dispatchToastMessage = dispatchToastMessage.bind(this);
-
     get userCanVote() {
         return userHasPermissionToVote;
     }
@@ -36,7 +34,7 @@ export default class FeedbackGathering extends LightningElement {
             this.questionName = result.Name;
         })
             .catch(error => {
-                this.dispatchToastMessage(error, 'Error');
+                dispatchToastMessage(error, 'Error');
             });
     }
 
@@ -52,11 +50,11 @@ export default class FeedbackGathering extends LightningElement {
     addNewResultToVoting() {
         createNewResult({ resultObj: this.resultRecord }).then(() => {
             refreshApex(this.wiredAlreadyVoted);
-            this.dispatchToastMessage('Feedback successfully submitted!', 'Success');
+            dispatchToastMessage('Feedback successfully submitted!', 'Success');
 
         })
             .catch(error => {
-                this.dispatchToastMessage(error, 'Error');
+                dispatchToastMessage(error, 'Error');
             });
     }
 
@@ -84,13 +82,13 @@ export default class FeedbackGathering extends LightningElement {
             this.showLwcElement = true;
             this.isAlreadyVoted = data;
         } else if (error) {
-            this.dispatchToastMessage(error, 'Error');
+            dispatchToastMessage(error, 'Error');
         }
 
     }
     checkForEmptyInputTextArea() {
         if (this.textAreaValue === '' || this.textAreaValue === null) {
-            this.dispatchToastMessage('Please provide feedback before submit', 'Warning');
+            dispatchToastMessage('Please provide feedback before submit', 'Warning');
             return true;
         }
         return false;
