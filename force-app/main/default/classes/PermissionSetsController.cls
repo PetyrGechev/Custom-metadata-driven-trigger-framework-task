@@ -51,7 +51,11 @@ public with sharing class PermissionSetsController {
 
 	@AuraEnabled
 	public static void deletePermissionSetAssigmentById(string psaId) {
-		delete as user [SELECT Id FROM PermissionSetAssignment WHERE PermissionSetAssignment.Id = :psaId];
+		try {
+			delete as user [SELECT Id FROM PermissionSetAssignment WHERE PermissionSetAssignment.Id = :psaId];
+		} catch (Exception ex) {
+			throw new AuraHandledException(ex.getMessage());
+		}
 	}
 
 	@AuraEnabled(cacheable=true)
